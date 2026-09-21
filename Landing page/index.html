@@ -1,0 +1,569 @@
+<!-- ============================================================
+     index.html — Northvale lead-generation landing page
+     Sections: Header / Hero / Trust / Intro / Services / Why /
+               Process / CTA / Lead Form / Footer / Legal Modal
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Northvale — Business & Technology Consulting</title>
+  <meta name="description" content="Tell us what you're working on or where you want to go next. Northvale helps growing businesses identify the right path forward." />
+
+  <!-- Favicon (inline, replace with /assets/icons/favicon.svg if preferred) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2308111F'/%3E%3Cpath d='M9 23V9l14 14V9' stroke='%233B82F6' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+
+  <!-- Typography: Manrope (primary) + Newsreader italic (editorial accent only) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================================================
+       ICON SPRITE — minimal line icons (1.6px stroke)
+       ============================================================ -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></symbol>
+    <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 2.8v5.4c0 4.4-2.9 7.4-7 9-4.1-1.6-7-4.6-7-9V5.8L12 3z"/><path d="m9.2 11.6 2 2 3.6-4"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="m3 12.5 9 5 9-5"/><path d="m3 17 9 5 9-5"/></symbol>
+    <symbol id="i-message" viewBox="0 0 24 24"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9a1.5 1.5 0 0 1-1.5 1.5H9l-5 4v-15z"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M15 7h6v6"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5.5" y="10.5" width="13" height="9.5" rx="2"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  </svg>
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Northvale — home">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+          <rect width="32" height="32" rx="6" fill="#0D1B2F"/>
+          <path d="M9 23V9l14 14V9" stroke="#3B82F6" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="brand-name">Northvale</span>
+      </a>
+
+      <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li style="--i:0"><a href="#about">About</a></li>
+          <li style="--i:1"><a href="#services">Services</a></li>
+          <li style="--i:2"><a href="#benefits">Benefits</a></li>
+          <li style="--i:3"><a href="#contact">Contact</a></li>
+        </ul>
+        <a class="btn btn-primary nav-cta" href="#contact">Start a Conversation</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================================================
+         HERO
+         IMAGE: replace src with /assets/images/hero.webp
+         ============================================================ -->
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" data-reveal>Professional Solutions for Growing Businesses</p>
+          <h1 class="hero-title" data-reveal style="--i:1">
+            Turn your next opportunity into <em>a real business conversation</em>.
+          </h1>
+          <p class="lead" data-reveal style="--i:2">
+            Tell us what you're working on, what you're trying to solve, or where
+            you want to go next. We'll help you identify the right path forward —
+            and walk it with you.
+          </p>
+          <div class="hero-actions" data-reveal style="--i:3">
+            <a href="#contact" class="btn btn-primary btn-lg">
+              Start Your Project
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </a>
+            <a href="#services" class="link-arrow link-arrow--down">
+              Explore Services
+              <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </a>
+          </div>
+          <p class="hero-assurance" data-reveal style="--i:4">
+            <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+            Confidential&nbsp;·&nbsp;Professional&nbsp;·&nbsp;No Obligation
+          </p>
+        </div>
+
+        <div class="hero-media" data-reveal style="--i:2">
+          <figure class="frame-offset">
+            <img
+              src="https://picsum.photos/seed/northvale-hero/900/1120.jpg"
+              alt="A consultant working in a bright, modern office with large windows"
+              width="900" height="1120" fetchpriority="high" />
+          </figure>
+          <figcaption class="media-caption">
+            <span class="caption-rule" aria-hidden="true"></span>
+            Advisory engagement — on-site strategy session
+          </figcaption>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TRUST STRIP
+         ============================================================ -->
+    <section class="trust-strip" aria-label="What we stand for">
+      <div class="container trust-inner" data-reveal>
+        <p class="trust-title">Built for businesses, teams &amp; organizations</p>
+        <ul class="trust-list">
+          <li class="trust-item">Strategic Approach</li>
+          <li class="trust-item">Professional Execution</li>
+          <li class="trust-item">Clear Communication</li>
+          <li class="trust-item">Long-Term Support</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         INTRODUCTION
+         IMAGE: replace src with /assets/images/intro-wide.webp
+         ============================================================ -->
+    <section class="section intro bg-paper" id="about">
+      <div class="container intro-grid">
+        <div class="intro-head" data-reveal>
+          <p class="eyebrow eyebrow--light">The Right Start</p>
+          <h2>Every successful project starts with the right conversation.</h2>
+        </div>
+        <div class="intro-body" data-reveal style="--i:1">
+          <p>
+            Businesses come to us at very different stages — some with a fully
+            defined project, others with a problem they haven't yet been able to
+            name. In both cases, we start the same way: by understanding what
+            you're actually trying to achieve before recommending anything.
+          </p>
+          <p>
+            From there, we shape an approach around your goals, your timeline
+            and your budget — and keep you informed at every step.
+          </p>
+          <a href="#contact" class="link-arrow accent">
+            Tell Us What You Need
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="container">
+        <figure class="intro-media frame-offset" data-reveal>
+          <img
+            src="https://picsum.photos/seed/northvale-office/1600/640.jpg"
+            alt="A contemporary office workspace with documents and a laptop"
+            width="1600" height="640" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SERVICES / AREAS OF INTEREST
+         NOTE: wording below is placeholder — replace with the
+         client's final content. Clicking a cell pre-selects that
+         service in the contact form.
+         ============================================================ -->
+    <section class="section services bg-white" id="services">
+      <div class="container">
+        <div class="section-head split">
+          <div data-reveal>
+            <p class="eyebrow eyebrow--light">Areas of Interest</p>
+            <h2>Focused expertise, applied where it matters.</h2>
+          </div>
+          <p class="head-note" data-reveal style="--i:1">
+            Six core areas, one standard of delivery.<br />
+            Select any area to start a conversation about it.
+          </p>
+        </div>
+
+        <ul class="services-grid">
+          <li data-reveal style="--i:0">
+            <a class="service-cell" href="#contact" data-service="Business Consulting">
+              <span class="service-num">01</span>
+              <h3>Business Consulting</h3>
+              <p>Strategy, operations and organisational decisions — grounded in your numbers, your market and your constraints.</p>
+              <span class="service-arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span>
+            </a>
+          </li>
+          <li data-reveal style="--i:1">
+            <a class="service-cell" href="#contact" data-service="Digital Solutions">
+              <span class="service-num">02</span>
+              <h3>Digital Solutions</h3>
+              <p>Websites, internal tools and customer-facing platforms designed around how your business actually works.</p>
+              <span class="service-arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span>
+            </a>
+          </li>
+          <li data-reveal style="--i:2">
+            <a class="service-cell" href="#contact" data-service="Technology">
+              <span class="service-num">03</span>
+              <h3>Technology</h3>
+              <p>Infrastructure, integrations and systems advice that keeps your operation reliable and ready to scale.</p>
+              <span class="service-arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span>
+            </a>
+          </li>
+          <li data-reveal style="--i:3">
+            <a class="service-cell" href="#contact" data-service="Marketing & Growth">
+              <span class="service-num">04</span>
+              <h3>Marketing &amp; Growth</h3>
+              <p>Positioning, campaigns and measurable growth activity — focused on pipeline, not vanity metrics.</p>
+              <span class="service-arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span>
+            </a>
+          </li>
+          <li data-reveal style="--i:4">
+            <a class="service-cell" href="#contact" data-service="Professional Services">
+              <span class="service-num">05</span>
+              <h3>Professional Services</h3>
+              <p>Reliable, well-managed support for the ongoing work that keeps your business moving.</p>
+              <span class="service-arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span>
+            </a>
+          </li>
+          <li data-reveal style="--i:5">
+            <a class="service-cell" href="#contact" data-service="Other">
+              <span class="service-num">06</span>
+              <h3>Custom Projects</h3>
+              <p>Something that doesn't fit a category? Those are often the projects we do our best work on.</p>
+              <span class="service-arrow" aria-hidden="true"><svg class="icon"><use href="#i-arrow-up-right"/></svg></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WHY CHOOSE US
+         IMAGE: replace src with /assets/images/team.webp
+         ============================================================ -->
+    <section class="section why bg-dark" id="benefits">
+      <div class="container why-grid">
+        <div class="why-media" data-reveal>
+          <figure class="frame-offset">
+            <img
+              src="https://picsum.photos/seed/northvale-team/800/1000.jpg"
+              alt="Two colleagues reviewing work together at a desk"
+              width="800" height="1000" loading="lazy" />
+          </figure>
+          <figcaption class="media-caption">
+            <span class="caption-rule" aria-hidden="true"></span>
+            Working sessions, not hand-offs
+          </figcaption>
+        </div>
+
+        <div class="why-copy">
+          <p class="eyebrow" data-reveal>Why Teams Choose Us</p>
+          <h2 data-reveal style="--i:1">Built around your goals, not a template.</h2>
+          <p class="section-sub" data-reveal style="--i:2">
+            Four principles that shape every engagement we take on.
+          </p>
+
+          <ol class="benefits">
+            <li class="benefit" data-reveal style="--i:0">
+              <span class="benefit-icon" aria-hidden="true"><svg class="icon"><use href="#i-target"/></svg></span>
+              <div class="benefit-body">
+                <h3><span class="benefit-num">01</span>Understand the Requirement</h3>
+                <p>We start by listening. Every engagement begins with a clear picture of your context, constraints and goals.</p>
+              </div>
+            </li>
+            <li class="benefit" data-reveal style="--i:1">
+              <span class="benefit-icon" aria-hidden="true"><svg class="icon"><use href="#i-layers"/></svg></span>
+              <div class="benefit-body">
+                <h3><span class="benefit-num">02</span>Build the Right Solution</h3>
+                <p>No recycled playbooks. We shape the approach around what your situation actually calls for.</p>
+              </div>
+            </li>
+            <li class="benefit" data-reveal style="--i:2">
+              <span class="benefit-icon" aria-hidden="true"><svg class="icon"><use href="#i-message"/></svg></span>
+              <div class="benefit-body">
+                <h3><span class="benefit-num">03</span>Communicate Clearly</h3>
+                <p>You'll always know where things stand — plain language, honest timelines, no jargon.</p>
+              </div>
+            </li>
+            <li class="benefit" data-reveal style="--i:3">
+              <span class="benefit-icon" aria-hidden="true"><svg class="icon"><use href="#i-trend"/></svg></span>
+              <div class="benefit-body">
+                <h3><span class="benefit-num">04</span>Focus on Long-Term Value</h3>
+                <p>We measure success by outcomes that hold up long after the project ends.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PROCESS
+         ============================================================ -->
+    <section class="section process bg-white">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow eyebrow--light">How It Works</p>
+          <h2>A simple, transparent way forward.</h2>
+        </div>
+
+        <ol class="steps">
+          <li class="step" data-reveal style="--i:0">
+            <span class="step-node">01</span>
+            <div class="step-body">
+              <h3>Tell Us About Your Need</h3>
+              <p>Share your requirement in your own words — a short brief is enough.</p>
+            </div>
+          </li>
+          <li class="step" data-reveal style="--i:1">
+            <span class="step-node">02</span>
+            <div class="step-body">
+              <h3>We Review Your Requirement</h3>
+              <p>We assess scope, fit and the realistic options available to you.</p>
+            </div>
+          </li>
+          <li class="step" data-reveal style="--i:2">
+            <span class="step-node">03</span>
+            <div class="step-body">
+              <h3>We Discuss the Right Approach</h3>
+              <p>A focused conversation to align on direction, timeline and expectations.</p>
+            </div>
+          </li>
+          <li class="step" data-reveal style="--i:3">
+            <span class="step-node">04</span>
+            <div class="step-body">
+              <h3>We Move Forward</h3>
+              <p>Once aligned, we begin — with clear milestones from day one.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONVERSION BAND
+         ============================================================ -->
+    <section class="section cta bg-paper">
+      <div class="container">
+        <div class="cta-panel" data-reveal>
+          <h2>Have a project, idea or requirement&nbsp;in&nbsp;mind?</h2>
+          <p class="cta-sub">Tell us a little about it. We'll take it from there.</p>
+          <a href="#contact" class="btn btn-primary btn-lg">
+            Submit Your Requirement
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </a>
+          <p class="cta-meta">Typical response within one business day.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         LEAD CAPTURE FORM
+         ============================================================ -->
+    <section class="section lead-section bg-paper" id="contact">
+      <div class="container lead-grid">
+
+        <div class="lead-intro" data-reveal>
+          <p class="eyebrow eyebrow--light">Get In Touch</p>
+          <h2>Let's Start a Conversation</h2>
+          <p class="section-sub">Share a few details and we'll get back to you.</p>
+
+          <ul class="reassurance">
+            <li class="reassurance-item">
+              <svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>
+              <span><strong>Confidential by default.</strong> Your information is never shared.</span>
+            </li>
+            <li class="reassurance-item">
+              <svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>
+              <span><strong>A real response</strong> within one business day.</span>
+            </li>
+            <li class="reassurance-item">
+              <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+              <span><strong>No obligation.</strong> The first conversation is simply a conversation.</span>
+            </li>
+          </ul>
+
+          <div class="contact-alt">
+            <p class="contact-alt-title">Prefer direct contact?</p>
+            <a href="mailto:hello@northvale.example">hello@northvale.example</a>
+            <a href="tel:+00000000000">+00 (0) 000 0000</a>
+          </div>
+        </div>
+
+        <div class="form-card" data-reveal style="--i:1">
+          <!-- FORM -->
+          <form id="leadForm" class="lead-form" novalidate>
+            <div class="form-grid">
+              <div class="field" data-field="name">
+                <label for="f-name">Full Name <span class="req" aria-hidden="true">*</span></label>
+                <input id="f-name" name="name" type="text" autocomplete="name"
+                       placeholder="e.g. Sarah Mitchell" required aria-describedby="f-name-error" />
+                <p class="field-error" id="f-name-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field="company">
+                <label for="f-company">Company / Organisation</label>
+                <input id="f-company" name="company" type="text" autocomplete="organization"
+                       placeholder="e.g. Mitchell &amp; Co." />
+              </div>
+
+              <div class="field" data-field="email">
+                <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+                <input id="f-email" name="email" type="email" autocomplete="email"
+                       placeholder="you@company.com" required aria-describedby="f-email-error" />
+                <p class="field-error" id="f-email-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field="phone">
+                <label for="f-phone">Phone / WhatsApp <span class="req" aria-hidden="true">*</span></label>
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel"
+                       placeholder="+1 555 000 0000" required aria-describedby="f-phone-error" />
+                <p class="field-error" id="f-phone-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field" data-field="country">
+                <label for="f-country">Country</label>
+                <input id="f-country" name="country" type="text" autocomplete="country-name"
+                       placeholder="e.g. Germany" />
+              </div>
+
+              <div class="field" data-field="service">
+                <label for="f-service">Service Interested In <span class="req" aria-hidden="true">*</span></label>
+                <div class="select-wrap">
+                  <select id="f-service" name="service" required aria-describedby="f-service-error">
+                    <option value="" disabled selected>Select a service</option>
+                    <option>Business Consulting</option>
+                    <option>Digital Solutions</option>
+                    <option>Marketing &amp; Growth</option>
+                    <option>Technology</option>
+                    <option>Professional Services</option>
+                    <option>Other</option>
+                  </select>
+                  <svg class="icon select-chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+                </div>
+                <p class="field-error" id="f-service-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field field--full" data-field="shortRequirement">
+                <label for="f-short">Short Project / Requirement</label>
+                <input id="f-short" name="shortRequirement" type="text"
+                       placeholder="In one line — e.g. Website redesign for a B2B services firm" />
+              </div>
+
+              <div class="field field--full" data-field="description">
+                <label for="f-desc">Description <span class="req" aria-hidden="true">*</span></label>
+                <textarea id="f-desc" name="description" rows="5" required
+                          placeholder="Tell us a little more: what you're trying to achieve, any timeline, and anything else that would help us respond well."
+                          aria-describedby="f-desc-hint f-desc-error"></textarea>
+                <div class="field-hint" id="f-desc-hint">
+                  <span>Minimum 30 characters — a short brief is fine.</span>
+                  <span class="char-count"><span id="descCount">0</span>&nbsp;/&nbsp;30</span>
+                </div>
+                <p class="field-error" id="f-desc-error" aria-live="polite"></p>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn">
+              <span class="btn-label">Submit Requirement</span>
+              <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+            </button>
+
+            <p class="privacy-note">
+              <svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>
+              Your information is used only to respond to your enquiry.
+            </p>
+          </form>
+
+          <!-- SUCCESS STATE (shown after valid submission) -->
+          <div class="form-success" id="formSuccess" hidden>
+            <svg class="success-icon" viewBox="0 0 72 72" aria-hidden="true">
+              <circle class="success-circle" cx="36" cy="36" r="34" />
+              <path class="success-check" d="M22 37l10 10 18-20" />
+            </svg>
+            <h3 id="successTitle" tabindex="-1">Thank You — We've Received Your Request.</h3>
+            <p>Your information has been successfully submitted. We'll review your requirement and get back to you.</p>
+            <p class="success-ref">Reference <strong id="successRef">—</strong></p>
+            <button type="button" class="btn btn-ghost-dark" id="submitAgain">Submit Another Request</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#top" aria-label="Northvale — back to top">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="6" fill="#0D1B2F"/>
+            <path d="M9 23V9l14 14V9" stroke="#3B82F6" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="brand-name">Northvale</span>
+        </a>
+        <p>A business and technology consultancy helping growing organisations make confident decisions — and deliver work that lasts.</p>
+      </div>
+
+      <nav class="footer-col" aria-label="Footer navigation">
+        <p class="footer-title">Navigate</p>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <p class="footer-title">Contact</p>
+        <ul>
+          <!-- CONTENT: replace with real contact details -->
+          <li><a href="mailto:hello@northvale.example">hello@northvale.example</a></li>
+          <li><a href="tel:+00000000000">+00 (0) 000 0000</a></li>
+          <li><span class="footer-muted">Level 12, 100 Market Street</span></li>
+          <li><span class="footer-muted">City, Country</span></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-title">Legal</p>
+        <ul>
+          <li><button type="button" class="footer-link" data-modal="privacy">Privacy Policy</button></li>
+          <li><button type="button" class="footer-link" data-modal="terms">Terms of Service</button></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>© <span id="year">2026</span> Northvale Advisory. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       LEGAL MODAL (placeholder content — replace before launch)
+       ============================================================ -->
+  <div class="modal" id="legalModal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button type="button" class="modal-close" id="modalClose" aria-label="Close dialog">
+        <svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>
+      </button>
+      <h3 id="modalTitle"></h3>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

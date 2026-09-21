@@ -1,0 +1,299 @@
+<!-- ============================================================
+     dashboard.html — Northvale Lead Dashboard (internal tool)
+     Layout: Sidebar / Topbar / Stats / Lead panel (table + cards)
+     NOTE: internal prototype — see security comment in
+     js/dashboard.js. Marked noindex so search engines ignore it.
+     ============================================================ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#0D1B2F" />
+  <title>Lead Dashboard — Northvale</title>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2308111F'/%3E%3Cpath d='M9 23V9l14 14V9' stroke='%233B82F6' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+
+  <!-- Shared brand foundation (tokens, base, buttons, modal, a11y) -->
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Dashboard app layer -->
+  <link rel="stylesheet" href="css/dashboard.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================================================
+       ICON SPRITE — same 1.6px line style as the landing page
+       ============================================================ -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><path d="M16 4.8a3.5 3.5 0 0 1 0 6.4"/><path d="M17.5 15.4c1.8.6 3 2.3 3 4.6"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9.5M18.5 7H20"/><circle cx="16" cy="7" r="2.5"/><path d="M4 17h2.5M11.5 17H20"/><circle cx="9" cy="17" r="2.5"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9.5 21H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3h3"/><path d="m15.5 16.5 4.5-4.5-4.5-4.5"/><path d="M20 12H9.5"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20.5 20.5-4.6-4.6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11.5"/><path d="m7.5 11 4.5 4.5L16.5 11"/><path d="M4.5 20h15"/></symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 24 24"><path d="M16.5 3 20 6.5 16.5 10"/><path d="M20 6.5H8.5A4.5 4.5 0 0 0 4 11"/><path d="m7.5 21-3.5-3.5L7.5 14"/><path d="M4 17.5h11.5A4.5 4.5 0 0 0 20 13"/></symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 6.5h16"/><path d="M9 6.5V5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5v1.5"/><path d="M6.5 6.5 7.3 19a1.8 1.8 0 0 0 1.8 1.7h5.8a1.8 1.8 0 0 0 1.8-1.7l.8-12.5"/><path d="M10 10.5v6M14 10.5v6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5"/><path d="M12 7.5h.01"/></symbol>
+    <symbol id="i-inbox" viewBox="0 0 24 24"><polyline points="21 12.5 16 12.5 14 15.5 10 15.5 8 12.5 3 12.5"/><path d="M5.3 5.6 3 12.5V17a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4.5l-2.3-6.9A2 2 0 0 0 16.8 4H7.2a2 2 0 0 0-1.9 1.6z"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="15" rx="2"/><path d="M8 3.5v4M16 3.5v4M4 10.5h16"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M13.5 4.5h6v6"/><path d="M19.5 4.5 11 13"/><path d="M19.5 14v5A1.5 1.5 0 0 1 18 20.5H5A1.5 1.5 0 0 1 3.5 19V6A1.5 1.5 0 0 1 5 4.5h5"/></symbol>
+  </svg>
+
+  <div class="app">
+
+    <!-- ============================================================
+         SIDEBAR
+         ============================================================ -->
+    <aside class="sidebar" id="sidebar" aria-label="Dashboard navigation">
+      <div class="side-brand">
+        <a class="brand" href="index.html" aria-label="Northvale — back to website">
+          <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" rx="6" fill="#08111F"/>
+            <path d="M9 23V9l14 14V9" stroke="#3B82F6" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="brand-name">Northvale</span>
+        </a>
+      </div>
+
+      <p class="side-label">Menu</p>
+      <nav aria-label="Sections">
+        <ul class="side-nav">
+          <li>
+            <button class="nav-item is-active" data-view="dashboard" aria-current="page" title="Dashboard">
+              <svg class="icon" aria-hidden="true"><use href="#i-grid"/></svg>
+              <span class="label">Dashboard</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="leads" title="Leads">
+              <svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>
+              <span class="label">Leads</span>
+              <span class="nav-badge" id="navBadge" hidden>0</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="side-foot">
+        <!-- Honest stubs: no fake authentication. See js/dashboard.js -->
+        <button class="nav-item" data-stub="settings" title="Settings">
+          <svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg>
+          <span class="label">Settings</span>
+        </button>
+        <button class="nav-item" data-stub="logout" title="Log out">
+          <svg class="icon" aria-hidden="true"><use href="#i-logout"/></svg>
+          <span class="label">Log out</span>
+        </button>
+      </div>
+
+      <p class="side-note">Prototype build — leads are stored locally in this browser.</p>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebarBackdrop" hidden></div>
+
+    <!-- ============================================================
+         MAIN AREA
+         ============================================================ -->
+    <div class="app-main">
+
+      <header class="topbar">
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+          <span></span><span></span>
+        </button>
+        <div class="topbar-title">
+          <h1>Lead Dashboard</h1>
+          <p>Manage and review incoming enquiries.</p>
+        </div>
+        <div class="topbar-meta">
+          <p class="topbar-date">
+            <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+            <time id="todayDate"></time>
+          </p>
+          <div class="avatar" title="Local prototype — no account system connected" aria-label="Account placeholder">AM</div>
+        </div>
+      </header>
+
+      <main class="content" id="main">
+
+        <!-- Summary statistics — always computed from real stored data -->
+        <section class="stats" aria-label="Lead statistics">
+          <article class="stat">
+            <p class="stat-label"><span class="stat-dot stat-dot--total" aria-hidden="true"></span>Total Leads</p>
+            <p class="stat-value" id="statTotal" data-v="0">0</p>
+          </article>
+          <article class="stat">
+            <p class="stat-label"><span class="stat-dot stat-dot--new" aria-hidden="true"></span>New</p>
+            <p class="stat-value" id="statNew" data-v="0">0</p>
+          </article>
+          <article class="stat">
+            <p class="stat-label"><span class="stat-dot stat-dot--contacted" aria-hidden="true"></span>Contacted</p>
+            <p class="stat-value" id="statContacted" data-v="0">0</p>
+          </article>
+          <article class="stat">
+            <p class="stat-label"><span class="stat-dot stat-dot--closed" aria-hidden="true"></span>Closed</p>
+            <p class="stat-value" id="statClosed" data-v="0">0</p>
+          </article>
+        </section>
+
+        <!-- ============================================================
+             LEAD PANEL — "Recent Leads" (dashboard view, latest 6)
+             or "All Leads" (leads view). Same components, one renderer.
+             ============================================================ -->
+        <section class="panel" aria-labelledby="panelTitle">
+          <div class="panel-head">
+            <h2 id="panelTitle">Recent Leads</h2>
+            <p class="panel-meta" id="panelMeta">0 leads</p>
+          </div>
+
+          <div id="leadsData">
+            <div class="panel-controls">
+              <div class="control-search">
+                <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+                <input type="search" id="searchInput" class="control"
+                       placeholder="Search name, company, email or phone…"
+                       aria-label="Search leads by name, company, email or phone" />
+              </div>
+              <select class="control control-select" id="statusFilter" aria-label="Filter by status">
+                <option value="all">All statuses</option>
+                <option value="New">New</option>
+                <option value="Contacted">Contacted</option>
+                <option value="Closed">Closed</option>
+              </select>
+              <!-- Service options are built dynamically from stored leads -->
+              <select class="control control-select" id="serviceFilter" aria-label="Filter by service">
+                <option value="all">All services</option>
+              </select>
+              <button class="btn btn-outline" id="exportBtn">
+                <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+                Export CSV
+              </button>
+            </div>
+
+            <div class="table-wrap" id="tableWrap">
+              <table class="lead-table">
+                <caption class="visually-hidden">Leads submitted through the Northvale website enquiry form</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Company</th>
+                    <th scope="col" class="col-email">Email</th>
+                    <th scope="col" class="col-phone">Phone</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"><span class="visually-hidden">Actions</span></th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody"></tbody>
+              </table>
+            </div>
+
+            <!-- Mobile alternative to the table -->
+            <div class="lead-cards" id="leadCards"></div>
+          </div>
+
+          <!-- Empty states -->
+          <div class="empty-state" id="emptyAll" hidden>
+            <span class="empty-icon" aria-hidden="true"><svg class="icon"><use href="#i-inbox"/></svg></span>
+            <h3>No leads yet</h3>
+            <p>New enquiries submitted through the landing page will appear here.</p>
+            <a class="link-btn" href="index.html">Open the enquiry form <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+          </div>
+          <div class="empty-state" id="emptyFiltered" hidden>
+            <span class="empty-icon" aria-hidden="true"><svg class="icon"><use href="#i-search"/></svg></span>
+            <h3>No matching leads</h3>
+            <p>Try a different search term, or clear the filters.</p>
+            <button class="btn btn-ghost-dark" id="clearFilters">Clear filters</button>
+          </div>
+
+          <div class="panel-foot" id="panelFoot" hidden>
+            <button class="link-btn" id="viewAllBtn">View all leads <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></button>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       STATUS POPOVER (positioned next to the trigger button)
+       ============================================================ -->
+  <div class="status-menu" id="statusMenu" role="menu" aria-label="Change status"></div>
+
+  <!-- ============================================================
+       LEAD DETAIL DRAWER
+       ============================================================ -->
+  <div class="drawer-root" id="drawerRoot" hidden>
+    <div class="drawer-backdrop" data-close-drawer></div>
+    <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <header class="drawer-head">
+        <div class="drawer-head-text">
+          <p class="drawer-kicker">Lead Details</p>
+          <h2 id="drawerTitle">—</h2>
+          <p class="drawer-sub" id="drawerSub">—</p>
+        </div>
+        <button class="icon-btn icon-btn-lg" id="drawerClose" aria-label="Close lead details">
+          <svg class="icon" aria-hidden="true"><use href="#i-x"/></svg>
+        </button>
+      </header>
+
+      <div class="drawer-body">
+        <div class="drawer-status">
+          <p>Current status</p>
+          <span class="badge" id="drawerStatus">—</span>
+        </div>
+        <dl class="detail-list" id="detailList"></dl>
+        <div class="detail-desc">
+          <h3>Project / Requirement Description</h3>
+          <p id="drawerDesc"></p>
+        </div>
+      </div>
+
+      <footer class="drawer-foot">
+        <button class="btn btn-outline" id="markContacted">Mark Contacted</button>
+        <button class="btn btn-outline" id="markClosed">Mark Closed</button>
+        <button class="btn btn-danger" id="drawerDelete">
+          <svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg>
+          Delete
+        </button>
+      </footer>
+    </aside>
+  </div>
+
+  <!-- ============================================================
+       DELETE CONFIRMATION (no native confirm())
+       ============================================================ -->
+  <div class="modal" id="confirmModal" hidden>
+    <div class="modal-backdrop" data-cancel-delete></div>
+    <div class="modal-panel modal-panel--sm" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmText">
+      <span class="confirm-icon" aria-hidden="true"><svg class="icon"><use href="#i-trash"/></svg></span>
+      <h3 id="confirmTitle">Delete this lead?</h3>
+      <p id="confirmText">You're about to permanently remove the enquiry from <strong id="confirmName">this lead</strong>. This can't be undone.</p>
+      <div class="confirm-actions">
+        <button class="btn btn-ghost-dark" id="cancelDelete">Cancel</button>
+        <button class="btn btn-danger" id="confirmDelete">Delete Lead</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast feedback -->
+  <div class="toast" id="toast" role="status">
+    <svg class="icon" id="toastIcon" aria-hidden="true"></svg>
+    <span id="toastMsg"></span>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
